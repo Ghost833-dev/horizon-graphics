@@ -4,6 +4,7 @@ project(QuantumCore)
 
 add_library(quantum_core SHARED
     src/Application.cpp
+    src/Window.cpp
 )
 
 target_compile_definitions(quantum_core PRIVATE QUANTUM_BUILD_SHARED)
@@ -12,6 +13,13 @@ target_include_directories(quantum_core
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
         $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(quantum_core
+    PUBLIC
+        glfw
+    PRIVATE
+        Vulkan::Vulkan
 )
 
 set_target_properties(quantum_core PROPERTIES
