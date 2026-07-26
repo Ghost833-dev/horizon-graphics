@@ -20,6 +20,14 @@ else()
     message(FATAL_ERROR "Vulkan not found. Please install Vulkan SDK.")
 endif()
 
+# Search GLFW
+find_package(glfw3 REQUIRED)
+if(glfw3_FOUND)
+    message(STATUS "GLFW found: ${glfw3_INCLUDE_DIRS}")
+else()
+    message(FATAL_ERROR "GLFW not found. Please install GLFW.")
+endif()
+
 # Windows
 if(WIN32)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
