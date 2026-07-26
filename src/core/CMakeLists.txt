@@ -6,10 +6,11 @@ add_library(quantum_core SHARED
     src/Application.cpp
 )
 
-target_compile_definitions(quantum_core PRIVATE QUANTUM_CORE_BUILD)
+target_compile_definitions(quantum_core PRIVATE QUANTUM_BUILD_SHARED)
 target_include_directories(quantum_core
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
         $<INSTALL_INTERFACE:include>
 )
 
