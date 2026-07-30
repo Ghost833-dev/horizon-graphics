@@ -1,7 +1,6 @@
 // src/core/src/Window.cpp
 
 #include "quantum/core/Window.h"
-#include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <vulkan/vulkan_core.h>
 
