@@ -1,11 +1,14 @@
 // src/core/include/quantum/core/Application.h
 
 #pragma once
-#include <string>
 #include "src/Export.h"
+#include <memory>
+#include <string>
 
 namespace quantum {
 namespace core {
+
+class Window;
 
 class QUANTUM_CORE_API Application {
 public:
@@ -15,7 +18,10 @@ public:
   void initialize();
   void run();
   void shutdown();
-  void printMessage(const std::string& message);
+  void printMessage(const std::string &message);
+
+private:
+  std::unique_ptr<Window> m_window;
 };
 
 } // namespace core
