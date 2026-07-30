@@ -3,12 +3,12 @@
 #include <quantum/core/Application.h>
 
 int main() {
-    quantum::core::Application app;
+  quantum::core::Application app;
 
-    app.initialize();
-    app.printMessage("Hello World from Quantum!");
-    app.run();
-    app.shutdown();
+  app.initialize();
+  app.printMessage("Hello World from Quantum!");
+  app.run();
+  app.shutdown();
 
-    return 0;
+  return 0;
 }
