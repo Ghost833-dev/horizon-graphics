@@ -18,4 +18,5 @@
 #endif
 
 // Macros for each module
-#define QUANTUM_CORE_API   QUANTUM_EXPORT
+#define QUANTUM_CORE_API  QUANTUM_EXPORT
+#define QUANTUM_RHI_API   QUANTUM_EXPORT
