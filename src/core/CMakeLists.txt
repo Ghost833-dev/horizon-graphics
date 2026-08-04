@@ -30,18 +30,18 @@ set_target_properties(quantum_core PROPERTIES
 
 # Windows
 if(WIN32)
-    set_target_properties(quantum_core PROPERTIES
+  set_target_properties(quantum_core PROPERTIES
         WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
 endif()
 
 # APPLE
 if(APPLE)
-    target_link_libraries(quantum_core
+  target_link_libraries(quantum_core
         PRIVATE
             ${MOLTENVK_LIB}
             ${METAL_LIB}
             ${QUARTZCORE_LIB}
     )
-    target_compile_definitions(quantum_core PRIVATE VK_USE_PLATFORM_METAL_EXT)
+  target_compile_definitions(quantum_core PRIVATE VK_USE_PLATFORM_METAL_EXT)
 endif()
