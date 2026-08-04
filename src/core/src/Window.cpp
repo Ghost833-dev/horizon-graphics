@@ -26,11 +26,7 @@ Window::Window(int width, int height, const std::string &title)
     throw std::runtime_error("Failed to create GLFW window");
   }
 
-  glfwSetWindowUserPointer(m_handle, this);
-  glfwSetFramebufferSizeCallback(m_handle, framebufferSizeCallback);
-  glfwSetKeyCallback(m_handle, keyCallback);
-  glfwSetMouseButtonCallback(m_handle, mouseButtonCallback);
-  glfwSetCursorPosCallback(m_handle, cursorPosCallback);
+  setupCallbacks();
 }
 
 Window::~Window() {
@@ -81,6 +77,31 @@ void Window::destroy() {
   if (m_handle) {
     glfwDestroyWindow(m_handle);
     m_handle = nullptr;
+  }
+}
+
+void Window::setupCallbacks() {
+  glfwSetWindowUserPointer(m_handle, this);
+  glfwSetFramebufferSizeCallback(m_handle, framebufferSizeCallback);
+  glfwSetKeyCallback(m_handle, keyCallback);
+  glfwSetMouseButtonCallback(m_handle, mouseButtonCallback);
+  glfwSetCursorPosCallback(m_handle, cursorPosCallback);
+  glfwSetWindowIconifyCallback(m_handle, windowIconifyCallback);
+  glfwSetWindowMaximizeCallback(m_handle, windowMaximizeCallback);
+}
+
+
+void Window::windowIconifyCallback(GLFWwindow *window, int iconified) {
+  auto *self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+  if (self) {
+    self->m_isMinimized = (iconified == GLFW_TRUE);
+  }
+}
+
+void Window::windowMaximizeCallback(GLFWwindow *window, int maximized) {
+  auto *self = static_cast<Window*>(glfwGetWindowUserPointer(window));
+  if (self) {
+    self->m_isMaximized = (maximized == GLFW_TRUE);
   }
 }
 

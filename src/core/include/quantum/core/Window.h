@@ -29,21 +29,28 @@ public:
 
   bool shouldClose() const;
   void pollEvents();
+  bool isMinimized() const { return m_isMinimized; }
+  bool isMaximized() const { return m_isMaximized;}
 
   VkSurfaceKHR createVulkanSurface(VkInstance instance);
 
 private:
   void destroy();
+  void setupCallbacks();
 
-  GLFWwindow *m_handle;
+  GLFWwindow *m_handle = nullptr;
   int m_width;
   int m_height;
   std::string m_title;
+  bool m_isMinimized = false;
+  bool m_isMaximized = false;
 
   static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
   static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
   static void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
   static void cursorPosCallback(GLFWwindow *window, double xpos, double ypos);
+  static void windowIconifyCallback(GLFWwindow* window, int iconified);
+  static void windowMaximizeCallback(GLFWwindow* window, int maximized);
 };
 
 } // namespace core
