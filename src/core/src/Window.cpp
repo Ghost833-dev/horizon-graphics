@@ -2,7 +2,7 @@
 
 #include "quantum/core/Window.h"
 #include <stdexcept>
-#include <vulkan/vulkan_core.h>
+#include <vulkan/vulkan.h>
 
 namespace quantum {
 namespace core {
@@ -58,7 +58,7 @@ Window &Window::operator=(Window  &&other) noexcept {
 }
 
 bool Window::shouldClose() const {
-  return glfwWindowShouldClose(m_handle);
+  return m_handle && glfwWindowShouldClose(m_handle);
 }
 
 void Window::pollEvents() {
@@ -89,7 +89,6 @@ void Window::setupCallbacks() {
   glfwSetWindowIconifyCallback(m_handle, windowIconifyCallback);
   glfwSetWindowMaximizeCallback(m_handle, windowMaximizeCallback);
 }
-
 
 void Window::windowIconifyCallback(GLFWwindow *window, int iconified) {
   auto *self = static_cast<Window*>(glfwGetWindowUserPointer(window));
