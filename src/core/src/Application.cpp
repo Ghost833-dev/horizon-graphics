@@ -15,6 +15,7 @@ Application::Application() {
 
 Application::~Application() {
   std::cout << "[Quantum Core] Application destroyed" << std::endl;
+  glfwTerminate();
 }
 
 void Application::initialize() {
