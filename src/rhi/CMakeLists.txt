@@ -2,8 +2,17 @@
 
 project(QuantumRHI)
 
+set(VK_BOOTSTRAP_COMPILE_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+add_subdirectory(
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/vk-bootstrap"
+    "${CMAKE_CURRENT_BINARY_DIR}/vk-bootstrap-build"
+    EXCLUDE_FROM_ALL
+)
+
 add_library(quantum_rhi SHARED
-    src/VulkanDevice.cpp
+    src/VulkanContext.cpp
 )
 
 target_compile_definitions(quantum_rhi PRIVATE QUANTUM_BUILD_SHARED)
@@ -19,6 +28,7 @@ target_link_libraries(quantum_rhi
         quantum_core
     PRIVATE
         Vulkan::Vulkan
+        vk-bootstrap
 )
 
 set_target_properties(quantum_rhi PROPERTIES
