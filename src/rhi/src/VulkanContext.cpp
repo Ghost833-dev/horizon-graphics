@@ -3,11 +3,11 @@
 #include "quantum/rhi/VulkanContext.h"
 #include "quantum/core/Window.h"
 #include <VkBootstrap.h>
+#include <cstddef>
 #include <cstdint>
 #include <iostream>
 #include <stdexcept>
 #include <vulkan/vulkan.h>
-#include <vulkan/vulkan_core.h>
 
 namespace quantum {
 namespace rhi {
@@ -104,16 +104,15 @@ void VulkanContext::createSwapchain(int width, int height) {
   vkb::SwapchainBuilder swapchainBuilder{m_physicalDevice, m_device, m_surface};
   m_swapchainImageFormat = VK_FORMAT_B8G8R8A8_UNORM;
 
-  auto vkbSwapchain =
-      swapchainBuilder
-          .set_desired_format(VkSurfaceFormatKHR{
-              .format = m_swapchainImageFormat,
-              .colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR})
-          .set_desired_present_mode(VK_PRESENT_MODE_FIFO_KHR)
-          .set_desired_extent(static_cast<uint32_t>(width),
-                              static_cast<uint32_t>(height))
-          .add_image_usage_flags(VK_IMAGE_USAGE_TRANSFER_DST_BIT)
-          .build();
+  auto vkbSwapchain = swapchainBuilder
+      .set_desired_format(VkSurfaceFormatKHR{
+          .format = m_swapchainImageFormat,
+          .colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR})
+      .set_desired_present_mode(VK_PRESENT_MODE_FIFO_KHR)
+      .set_desired_extent(static_cast<uint32_t>(width),
+                          static_cast<uint32_t>(height))
+      .add_image_usage_flags(VK_IMAGE_USAGE_TRANSFER_DST_BIT)
+      .build();
 
   if (!vkbSwapchain) {
     throw std::runtime_error("Failed to create Vulkan swapchain");
@@ -158,9 +157,31 @@ void VulkanContext::initCommands() {
   allocInfo.commandPool = m_commandPool;
   allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
   allocInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
-  
+
   if (vkAllocateCommandBuffers(m_device, &allocInfo, m_commandBuffers.data()) != VK_SUCCESS) {
     throw std::runtime_error("Failed to allocate command buffers");
+  }
+}
+
+void VulkanContext::initSyncStructures() {
+  const size_t MAX_FRAMES_IN_FLIGHT = 2;
+  m_imageAvailableSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+  m_renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
+  m_inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
+
+  VkSemaphoreCreateInfo semaphoreInfo{};
+  semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+  VkFenceCreateInfo fenceInfo{};
+  fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+  fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+  for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+    if (vkCreateSemaphore(m_device, &semaphoreInfo, nullptr, &m_imageAvailableSemaphores[i]) != VK_SUCCESS ||
+        vkCreateSemaphore(m_device, &semaphoreInfo, nullptr, &m_renderFinishedSemaphores[i]) != VK_SUCCESS ||
+        vkCreateFence(m_device, &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS) {
+      throw std::runtime_error("Failed to create synchronization objects");
+    }
   }
 }
 
