@@ -3,6 +3,7 @@
 #pragma once
 
 #include "quantum/core/Window.h"
+#include <cstddef>
 #include <vector>
 #include <vulkan/vulkan.h>
 
@@ -35,6 +36,8 @@ public:
 private:
   void initVulkan();
   void initSwapchain();
+  void initCommands();
+  void initSyncStructures();
 
   quantum::core::Window &m_window;
 
@@ -49,6 +52,13 @@ private:
   VkExtent2D m_swapchainExtent{};
   std::vector<VkImage> m_swapchainImages;
   std::vector<VkImageView> m_swapchainImageViews;
+
+  VkCommandPool m_commandPool{VK_NULL_HANDLE};
+  std::vector<VkCommandBuffer> m_commandBuffers;
+  std::vector<VkSemaphore> m_imageAvailableSemaphores;
+  std::vector<VkSemaphore> m_renderFinishedSemaphores;
+  std::vector<VkFence> m_inFlightFences;
+  size_t m_currentFrame{0};
 };
 
 } // namespace rhi
