@@ -42,6 +42,8 @@ VulkanContext::~VulkanContext() {
 void VulkanContext::initialize() {
   initVulkan();
   initSwapchain();
+  initCommands();
+  initSyncStructures();
   std::cout << "[Quantum RHI] Vulkan Context initialized." << std::endl;
 }
 
@@ -121,9 +123,6 @@ void VulkanContext::createSwapchain(int width, int height) {
   m_swapchainExtent = vkbSwapchain.value().extent;
   m_swapchainImages = vkbSwapchain.value().get_images().value();
   m_swapchainImageViews = vkbSwapchain.value().get_image_views().value();
-
-  std::cout << "[Quantum RHI] Swapchain created: " << m_swapchainExtent.width
-            << "x" << m_swapchainExtent.height << std::endl;
 }
 
 void VulkanContext::destroySwapchain() {
@@ -141,6 +140,27 @@ void VulkanContext::destroySwapchain() {
   if (m_swapchain != VK_NULL_HANDLE) {
     vkDestroySwapchainKHR(m_device, m_swapchain, nullptr);
     m_swapchain = VK_NULL_HANDLE;
+  }
+}
+
+void VulkanContext::initCommands() {
+  VkCommandPoolCreateInfo poolInfo{};
+  poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+  poolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+
+  if (vkCreateCommandPool(m_device, &poolInfo, nullptr, &m_commandPool) != VK_SUCCESS) {
+    throw std::runtime_error("Failed to create command pool");
+  }
+
+  m_commandBuffers.resize(m_swapchainImages.size());
+  VkCommandBufferAllocateInfo allocInfo{};
+  allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+  allocInfo.commandPool = m_commandPool;
+  allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+  allocInfo.commandBufferCount = static_cast<uint32_t>(m_commandBuffers.size());
+  
+  if (vkAllocateCommandBuffers(m_device, &allocInfo, m_commandBuffers.data()) != VK_SUCCESS) {
+    throw std::runtime_error("Failed to allocate command buffers");
   }
 }
 
