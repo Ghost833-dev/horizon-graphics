@@ -3,12 +3,15 @@
 project(QuantumRHI)
 
 set(VK_BOOTSTRAP_COMPILE_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(
     "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/vk-bootstrap"
     "${CMAKE_CURRENT_BINARY_DIR}/vk-bootstrap-build"
     EXCLUDE_FROM_ALL
+)
+
+set_target_properties(vk-bootstrap PROPERTIES
+  POSITION_INDEPENDENT_CODE ON
 )
 
 add_library(quantum_rhi SHARED
