@@ -38,9 +38,5 @@ void Application::shutdown() {
   m_window.reset();
 }
 
-void Application::printMessage(const std::string &message) {
-  std::cout << "[Quantum Core] Message: " << message << std::endl;
-}
-
 } // namespace core
 } // namespace quantum

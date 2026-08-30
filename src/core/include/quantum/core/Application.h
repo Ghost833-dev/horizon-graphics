@@ -3,7 +3,6 @@
 #pragma once
 #include "src/Export.h"
 #include <memory>
-#include <string>
 
 namespace quantum {
 namespace core {
@@ -18,7 +17,6 @@ public:
   void initialize();
   void run();
   void shutdown();
-  void printMessage(const std::string &message);
 
 private:
   std::unique_ptr<Window> m_window;
