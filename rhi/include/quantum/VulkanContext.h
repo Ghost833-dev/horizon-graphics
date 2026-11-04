@@ -1,8 +1,8 @@
-// src/rhi/include/quantum/rhi/VulkanContext.h
+// rhi/include/quantum/VulkanContext.h
 
 #pragma once
 
-#include "quantum/core/Window.h"
+#include <quantum/Window.h>
 #include <cstddef>
 #include <vector>
 #include <vulkan/vulkan.h>

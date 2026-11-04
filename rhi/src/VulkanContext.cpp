@@ -1,7 +1,7 @@
-// src/rhi/src/VulkanContext.cpp
+// rhi/src/VulkanContext.cpp
 
-#include "quantum/rhi/VulkanContext.h"
-#include "quantum/core/Window.h"
+#include <quantum/VulkanContext.h>
+#include <quantum/Window.h>
 #include <VkBootstrap.h>
 #include <cstddef>
 #include <cstdint>

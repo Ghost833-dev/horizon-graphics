@@ -1,11 +1,11 @@
-# src/rhi/CMakeLists.txt
+# rhi/CMakeLists.txt
 
 project(QuantumRHI)
 
 set(VK_BOOTSTRAP_COMPILE_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/vk-bootstrap"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../third_party/vk-bootstrap"
     "${CMAKE_CURRENT_BINARY_DIR}/vk-bootstrap-build"
     EXCLUDE_FROM_ALL
 )
@@ -22,7 +22,8 @@ target_compile_definitions(quantum_rhi PRIVATE QUANTUM_BUILD_SHARED)
 target_include_directories(quantum_rhi
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../core/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
         $<INSTALL_INTERFACE:include>
 )
 
