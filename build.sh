@@ -34,11 +34,11 @@ run_example() {
         echo "Running $exe_path..."
         if [[ "$OSTYPE" == "darwin"* ]]; then
             # macOS uses DYLD_LIBRARY_PATH
-            export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/src/core
+            export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/core:$(pwd)/rhi
             "$exe_path"
         else
             # Linux
-            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/src/core
+            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/core:$(pwd)/rhi
             "$exe_path"
         fi
         return 0
