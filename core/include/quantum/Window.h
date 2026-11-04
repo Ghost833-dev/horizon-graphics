@@ -1,8 +1,7 @@
-// src/core/include/quantum/core/Window.h
+// core/include/quantum/Window.h
 
 #pragma once
-
-#include "src/Export.h"
+#include <quantum/Export.h>
 #include <string>
 
 #define GLFW_INCLUDE_VULKAN

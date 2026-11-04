@@ -1,4 +1,4 @@
-# src/core/CMakeLists.txt
+# core/CMakeLists.txt
 
 project(QuantumCore)
 
@@ -11,7 +11,7 @@ target_compile_definitions(quantum_core PRIVATE QUANTUM_BUILD_SHARED)
 target_include_directories(quantum_core
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
         $<INSTALL_INTERFACE:include>
 )
 

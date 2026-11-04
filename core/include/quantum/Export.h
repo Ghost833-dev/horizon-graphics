@@ -1,4 +1,4 @@
-// src/core/include/quantum/core/Export.h
+// core/include/quantum/Export.h
 
 #pragma once
 

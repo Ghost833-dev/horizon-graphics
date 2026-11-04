@@ -1,9 +1,9 @@
-// src/core/src/Application.cpp
+// core/src/Application.cpp
 
 #include <chrono>
 #include <iostream>
-#include <quantum/core/Application.h>
-#include <quantum/core/Window.h>
+#include <quantum/Application.h>
+#include <quantum/Window.h>
 #include <thread>
 
 namespace quantum {

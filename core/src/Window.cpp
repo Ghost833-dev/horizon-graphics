@@ -1,6 +1,6 @@
-// src/core/src/Window.cpp
+// core/src/Window.cpp
 
-#include "quantum/core/Window.h"
+#include <quantum/Window.h>
 #include <stdexcept>
 #include <vulkan/vulkan.h>
 

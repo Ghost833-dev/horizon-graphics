@@ -1,7 +1,7 @@
-// src/core/include/quantum/core/Application.h
+// core/include/quantum/Application.h
 
 #pragma once
-#include "src/Export.h"
+#include <quantum/Export.h>
 #include <memory>
 
 namespace quantum {
