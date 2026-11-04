@@ -1,6 +1,6 @@
 // examples/hello_triangle/main.cpp
 
-#include <quantum/core/Application.h>
+#include <quantum/Application.h>
 
 int main() {
   quantum::core::Application app;

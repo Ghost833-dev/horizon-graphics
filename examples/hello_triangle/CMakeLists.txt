@@ -12,8 +12,9 @@ target_link_libraries(hello_triangle
 # RPATH for Linux/macOS
 if(UNIX)
   get_target_property(CORE_BINARY_DIR quantum_core BINARY_DIR)
+  get_target_property(RHI_BINARY_DIR quantum_rhi BINARY_DIR)
   set_target_properties(hello_triangle PROPERTIES
-        BUILD_RPATH "${CORE_BINARY_DIR}"
+        BUILD_RPATH "${CORE_BINARY_DIR}:${RHI_BINARY_DIR}"
         INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib"
     )
 endif()
