@@ -47,7 +47,10 @@ if(APPLE)
   endif()
 endif()
 
-add_subdirectory(src)
+add_subdirectory(core)
+add_subdirectory(rhi)
+add_subdirectory(third_party)
+add_subdirectory(examples)
 
 # Examples
 option(QUANTUM_BUILD_EXAMPLES "Build examples" ON)
