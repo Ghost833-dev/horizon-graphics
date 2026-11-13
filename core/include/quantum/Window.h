@@ -24,7 +24,7 @@ public:
   GLFWwindow *getHandle() const { return m_handle; }
   int getWidth() const { return m_width; }
   int getHeight() const { return m_height; }
-  int getAspectRatio() const { return static_cast<float>(m_width) / m_height; }
+  float getAspectRatio() const { return static_cast<float>(m_width) / static_cast<float>(m_height); }
 
   bool shouldClose() const;
   void pollEvents();
