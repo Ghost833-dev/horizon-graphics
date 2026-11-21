@@ -1,5 +1,3 @@
-// rhi/src/VulkanContext.cpp
-
 #include <quantum/VulkanContext.h>
 #include <quantum/Window.h>
 #include <VkBootstrap.h>
@@ -194,6 +192,20 @@ void VulkanContext::initSyncStructures() {
         vkCreateFence(m_device, &fenceInfo, nullptr, &m_inFlightFences[i]) != VK_SUCCESS) {
       throw std::runtime_error("Failed to create synchronization objects");
     }
+  }
+}
+
+void VulkanContext::beginFrame() {
+  // TODO: implement frame start
+}
+
+void VulkanContext::endFrame() {
+  // TODO: implement frame end
+}
+
+void VulkanContext::waitIdle() {
+  if (m_device != VK_NULL_HANDLE) {
+    vkDeviceWaitIdle(m_device);
   }
 }
 
