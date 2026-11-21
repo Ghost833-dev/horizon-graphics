@@ -1,5 +1,3 @@
-# rhi/CMakeLists.txt
-
 project(QuantumRHI)
 
 set(VK_BOOTSTRAP_COMPILE_EXAMPLES OFF CACHE BOOL "" FORCE)
