@@ -1,10 +1,8 @@
-// core/src/Window.cpp
-
-#include <quantum/Window.h>
+#include <horizon/Window.h>
 #include <stdexcept>
 #include <vulkan/vulkan.h>
 
-namespace quantum {
+namespace horizon {
 namespace core {
 
 Window::Window(int width, int height, const std::string &title)
@@ -134,4 +132,4 @@ void Window::cursorPosCallback(GLFWwindow *window, double xpos, double ypos) {
 }
 
 } // namespace core
-} // namespace quantum
+} // namespace horizon

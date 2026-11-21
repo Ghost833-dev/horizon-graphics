@@ -2,29 +2,29 @@
 
 #include <chrono>
 #include <iostream>
-#include <quantum/Application.h>
-#include <quantum/Window.h>
+#include <horizon/Application.h>
+#include <horizon/Window.h>
 #include <thread>
 
-namespace quantum {
+namespace horizon {
 namespace core {
 
 Application::Application() {
-  std::cout << "[Quantum Core] Application created" << std::endl;
+  std::cout << "[Horizon Core] Application created" << std::endl;
 }
 
 Application::~Application() {
-  std::cout << "[Quantum Core] Application destroyed" << std::endl;
+  std::cout << "[Horizon Core] Application destroyed" << std::endl;
   glfwTerminate();
 }
 
 void Application::initialize() {
-  std::cout << "[Quantum Core] Application initialized" << std::endl;
-  m_window = std::make_unique<Window>(800, 600, "Quantum Application");
+  std::cout << "[Horizon Core] Application initialized" << std::endl;
+  m_window = std::make_unique<Window>(800, 600, "Horizon Application");
 }
 
 void Application::run() {
-  std::cout << "[Quantum Core] Application is running..." << std::endl;
+  std::cout << "[Horizon Core] Application is running..." << std::endl;
 
   while (!m_window->shouldClose()) {
     m_window->pollEvents();
@@ -34,9 +34,9 @@ void Application::run() {
 }
 
 void Application::shutdown() {
-  std::cout << "[Quantum Core] Application shutting down" << std::endl;
+  std::cout << "[Horizon Core] Application shutting down" << std::endl;
   m_window.reset();
 }
 
 } // namespace core
-} // namespace quantum
+} // namespace horizon
