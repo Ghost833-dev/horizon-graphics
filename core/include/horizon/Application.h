@@ -1,15 +1,13 @@
-// core/include/quantum/Application.h
-
 #pragma once
-#include <quantum/Export.h>
+#include <horizon/Export.h>
 #include <memory>
 
-namespace quantum {
+namespace horizon {
 namespace core {
 
 class Window;
 
-class QUANTUM_CORE_API Application {
+class HORIZON_CORE_API Application {
 public:
   Application();
   ~Application();
@@ -23,4 +21,4 @@ private:
 };
 
 } // namespace core
-} // namespace quantum
+} // namespace horizon

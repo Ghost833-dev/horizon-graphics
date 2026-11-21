@@ -1,16 +1,14 @@
-// core/include/quantum/Window.h
-
 #pragma once
-#include <quantum/Export.h>
+#include <horizon/Export.h>
 #include <string>
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-namespace quantum {
+namespace horizon {
 namespace core {
 
-class QUANTUM_CORE_API Window {
+class HORIZON_CORE_API Window {
 public:
   Window(int width, int height, const std::string &title);
   ~Window();
@@ -53,4 +51,4 @@ private:
 };
 
 } // namespace core
-} // namespace quantum
+} // namespace horizon
