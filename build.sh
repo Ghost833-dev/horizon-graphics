@@ -1,5 +1,4 @@
 #!/bin/bash
-# build.sh - Universal build script for Linux and macOS
 
 set -e
 
