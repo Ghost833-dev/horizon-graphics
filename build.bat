@@ -1,7 +1,7 @@
 @echo off
 REM build.bat - Build script for Windows
 
-echo Building Quantum...
+echo Building Horizon...
 
 where cmake >nul 2>nul
 if %errorlevel% neq 0 (

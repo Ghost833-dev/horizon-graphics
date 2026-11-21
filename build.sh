@@ -2,7 +2,7 @@
 
 set -e
 
-echo "Building Quantum..."
+echo "Building Horizon..."
 
 # macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -22,7 +22,7 @@ fi
 
 mkdir -p build && cd build
 
-cmake .. -DCMAKE_BUILD_TYPE=Release -DQUANTUM_BUILD_EXAMPLES=ON -G "${GENERATOR}"
+cmake .. -DCMAKE_BUILD_TYPE=Release -DHORIZON_BUILD_EXAMPLES=ON -G "${GENERATOR}"
 make -j${JOBS}
 echo "Build complete!"
 

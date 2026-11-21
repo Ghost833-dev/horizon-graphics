@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(PROJECT_NAME Quantum)
+set(PROJECT_NAME Horizon)
 project(${PROJECT_NAME} VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -51,8 +51,8 @@ add_subdirectory(core)
 add_subdirectory(rhi)
 
 # Examples
-option(QUANTUM_BUILD_EXAMPLES "Build examples" ON)
-if(QUANTUM_BUILD_EXAMPLES)
+option(HORIZON_BUILD_EXAMPLES "Build examples" ON)
+if(HORIZON_BUILD_EXAMPLES)
   if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/examples)
     add_subdirectory(examples)
     message(STATUS "Examples enabled")
