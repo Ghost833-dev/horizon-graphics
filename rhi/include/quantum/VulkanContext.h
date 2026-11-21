@@ -1,8 +1,7 @@
-// rhi/include/quantum/VulkanContext.h
-
 #pragma once
 
 #include <quantum/Window.h>
+#include <quantum/RenderContext.h>
 #include <cstddef>
 #include <vector>
 #include <vulkan/vulkan.h>
@@ -10,10 +9,10 @@
 namespace quantum {
 namespace rhi {
 
-class VulkanContext {
+class VulkanContext : public RenderContext {
 public:
   explicit VulkanContext(quantum::core::Window &window);
-  ~VulkanContext();
+  ~VulkanContext() override;
 
   VulkanContext(const VulkanContext &) = delete;
   VulkanContext &operator=(const VulkanContext &) = delete;
@@ -24,7 +23,10 @@ public:
   VkSwapchainKHR getSwapchain() const { return m_swapchain; }
   VkPhysicalDevice getPhysicalDevice() const { return m_physicalDevice; }
 
-  void initialize();
+  void initialize() override;
+  void beginFrame() override;
+  void endFrame() override;
+  void waitIdle() override;
 
   void createSwapchain(int width, int height);
   void destroySwapchain();
