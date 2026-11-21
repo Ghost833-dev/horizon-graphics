@@ -1,5 +1,3 @@
-// core/src/Application.cpp
-
 #include <chrono>
 #include <iostream>
 #include <horizon/Application.h>

@@ -1,5 +1,3 @@
-# core/CMakeLists.txt
-
 project(HorizonCore)
 
 add_library(horizon_core SHARED
