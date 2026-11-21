@@ -1,8 +1,8 @@
 #pragma once
 #include <memory>
-#include <quantum/Window.h>
+#include <horizon/Window.h>
 
-namespace quantum::rhi {
+namespace horizon::rhi {
 
 class RenderContext {
 public:
@@ -13,6 +13,6 @@ public:
   virtual void endFrame() = 0;
   virtual void waitIdle() = 0;
 
-  static std::unique_ptr<RenderContext> create(quantum::core::Window &window);
+  static std::unique_ptr<RenderContext> create(horizon::core::Window &window);
 };
-} // namespace quantum::rhi
+} // namespace horizon::rhi

@@ -1,17 +1,17 @@
 #pragma once
 
-#include <quantum/Window.h>
-#include <quantum/RenderContext.h>
+#include <horizon/Window.h>
+#include <horizon/RenderContext.h>
 #include <cstddef>
 #include <vector>
 #include <vulkan/vulkan.h>
 
-namespace quantum {
+namespace horizon {
 namespace rhi {
 
 class VulkanContext : public RenderContext {
 public:
-  explicit VulkanContext(quantum::core::Window &window);
+  explicit VulkanContext(horizon::core::Window &window);
   ~VulkanContext() override;
 
   VulkanContext(const VulkanContext &) = delete;
@@ -41,7 +41,7 @@ private:
   void initCommands();
   void initSyncStructures();
 
-  quantum::core::Window &m_window;
+  horizon::core::Window &m_window;
 
   VkInstance m_instance{VK_NULL_HANDLE};
   VkDebugUtilsMessengerEXT m_debugMessenger{VK_NULL_HANDLE};
@@ -64,4 +64,4 @@ private:
 };
 
 } // namespace rhi
-} // namespace quantum
+} // namespace horizon

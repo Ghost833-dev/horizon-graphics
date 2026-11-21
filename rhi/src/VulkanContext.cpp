@@ -1,5 +1,5 @@
-#include <quantum/VulkanContext.h>
-#include <quantum/Window.h>
+#include <horizon/VulkanContext.h>
+#include <horizon/Window.h>
 #include <VkBootstrap.h>
 #include <cstddef>
 #include <cstdint>
@@ -8,10 +8,10 @@
 #include <vulkan/vulkan.h>
 #include <vulkan/vulkan_core.h>
 
-namespace quantum {
+namespace horizon {
 namespace rhi {
 
-VulkanContext::VulkanContext(quantum::core::Window &window)
+VulkanContext::VulkanContext(horizon::core::Window &window)
     : m_window(window) {}
 
 VulkanContext::~VulkanContext() {
@@ -54,12 +54,12 @@ void VulkanContext::initialize() {
   initSwapchain();
   initCommands();
   initSyncStructures();
-  std::cout << "[Quantum RHI] Vulkan Context initialized." << std::endl;
+  std::cout << "[Horizon RHI] Vulkan Context initialized." << std::endl;
 }
 
 void VulkanContext::initVulkan() {
   vkb::InstanceBuilder builder;
-  auto inst_ret = builder.set_app_name("Quantum")
+  auto inst_ret = builder.set_app_name("Horizon")
                       .request_validation_layers(true)
                       .use_default_debug_messenger()
                       .require_api_version(1, 3, 0)
@@ -210,4 +210,4 @@ void VulkanContext::waitIdle() {
 }
 
 } // namespace rhi
-} // namespace quantum
+} // namespace horizon

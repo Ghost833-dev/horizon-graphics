@@ -1,4 +1,4 @@
-project(QuantumRHI)
+project(HorizonRHI)
 
 set(VK_BOOTSTRAP_COMPILE_EXAMPLES OFF CACHE BOOL "" FORCE)
 
@@ -12,12 +12,12 @@ set_target_properties(vk-bootstrap PROPERTIES
   POSITION_INDEPENDENT_CODE ON
 )
 
-add_library(quantum_rhi SHARED
+add_library(horizon_rhi SHARED
     src/VulkanContext.cpp
 )
 
-target_compile_definitions(quantum_rhi PRIVATE QUANTUM_BUILD_SHARED)
-target_include_directories(quantum_rhi
+target_compile_definitions(horizon_rhi PRIVATE HORIZON_BUILD_SHARED)
+target_include_directories(horizon_rhi
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../core/include>
@@ -25,34 +25,34 @@ target_include_directories(quantum_rhi
         $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(quantum_rhi
+target_link_libraries(horizon_rhi
     PUBLIC
-        quantum_core
+        horizon_core
     PRIVATE
         Vulkan::Vulkan
         vk-bootstrap
 )
 
-set_target_properties(quantum_rhi PROPERTIES
-    OUTPUT_NAME quantum_rhi
-    VERSION ${Quantum_VERSION}
-    SOVERSION ${Quantum_VERSION_MAJOR}
+set_target_properties(horizon_rhi PROPERTIES
+    OUTPUT_NAME horizon_rhi
+    VERSION ${Horizon_VERSION}
+    SOVERSION ${Horizon_VERSION_MAJOR}
 )
 
 # Windows
 if(WIN32)
-  set_target_properties(quantum_rhi PROPERTIES
+  set_target_properties(horizon_rhi PROPERTIES
         WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
 endif()
 
 # APPLE
 if(APPLE)
-  target_link_libraries(quantum_rhi
+  target_link_libraries(horizon_rhi
         PRIVATE
             ${MOLTENVK_LIB}
             ${METAL_LIB}
             ${QUARTZCORE_LIB}
     )
-  target_compile_definitions(quantum_rhi PRIVATE VK_USE_PLATFORM_METAL_EXT)
+  target_compile_definitions(horizon_rhi PRIVATE VK_USE_PLATFORM_METAL_EXT)
 endif()
