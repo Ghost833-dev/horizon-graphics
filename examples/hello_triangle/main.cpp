@@ -1,9 +1,9 @@
 // examples/hello_triangle/main.cpp
 
-#include <quantum/Application.h>
+#include <horizon/Application.h>
 
 int main() {
-  quantum::core::Application app;
+  horizon::core::Application app;
 
   app.initialize();
   app.run();
