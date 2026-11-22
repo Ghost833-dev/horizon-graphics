@@ -58,3 +58,13 @@ if(HORIZON_BUILD_EXAMPLES)
     message(WARNING "Examples folder not found at: ${CMAKE_CURRENT_SOURCE_DIR}/examples")
   endif()
 endif()
+
+# Tests
+option(HORIZON_BUILD_TESTS "Build unit tests" ON)
+if(HORIZON_BUILD_TESTS)
+  find_package(GTest REQUIRED)
+  enable_testing()
+  add_subdirectory(tests)
+  message(STATUS "Tests enabled")
+endif()
+
